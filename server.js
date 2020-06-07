@@ -7,10 +7,8 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var path = require('path');
-var helmet = require('helmet');
 
 
-app.use(helmet.hidePoweredBy());
 
 
 app.use(function(req, res, next) {
@@ -33,7 +31,9 @@ app.get('/file/*?', function(req, res, next) {
 });
 
 
+
 var main = require('./myApp.js');
+
 app.get('/app-info', function(req, res) {
   
   // list middlewares mounted on the '/' camper's app
