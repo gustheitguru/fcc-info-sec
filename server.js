@@ -7,6 +7,11 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var path = require('path');
+var helmet = require('helmet');
+
+
+app.use(helmet.hidePoweredBy());
+
 
 app.use(function(req, res, next) {
   res.set({
@@ -16,6 +21,8 @@ app.use(function(req, res, next) {
   app.disable('x-powered-by');
   next();
 });
+
+
 
 app.get('/file/*?', function(req, res, next) {
   if(req.params[0] === '.env') { return next({status: 401, message: 'ACCESS DENIED'}) }
