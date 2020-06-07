@@ -8,9 +8,6 @@ var app = express();
 var fs = require('fs');
 var path = require('path');
 
-
-
-
 app.use(function(req, res, next) {
   res.set({
     "Access-Control-Allow-Origin" : "*",
@@ -19,8 +16,6 @@ app.use(function(req, res, next) {
   app.disable('x-powered-by');
   next();
 });
-
-
 
 app.get('/file/*?', function(req, res, next) {
   if(req.params[0] === '.env') { return next({status: 401, message: 'ACCESS DENIED'}) }
@@ -31,9 +26,7 @@ app.get('/file/*?', function(req, res, next) {
 });
 
 
-
 var main = require('./myApp.js');
-
 app.get('/app-info', function(req, res) {
   
   // list middlewares mounted on the '/' camper's app
